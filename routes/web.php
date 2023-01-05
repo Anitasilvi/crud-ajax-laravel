@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\pegawaiAjaxController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,5 @@ Route::get('/', function () {
 Route::get('/pegawai', function () {
     return view('pegawai.index');
 });
+
+Route::resource('pegawaiAjax', pegawaiAjaxController::class);
