@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\pegawai;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class pegawaiAjaxController extends Controller
 {
@@ -13,7 +15,13 @@ class pegawaiAjaxController extends Controller
      */
     public function index()
     {
-        //
+        $data = pegawai::orderBy('nama', 'asc');
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('aksi', function ($data) {
+                return view('pegawai.tombol')->with('data', $data);
+            })
+            ->make(true);
     }
 
     /**

@@ -62,24 +62,12 @@
                 <thead>
                     <tr>
                         <th class="col-md-1">No</th>
-                        <th class="col-md-3">NIM</th>
                         <th class="col-md-4">Nama</th>
-                        <th class="col-md-2">Jurusan</th>
+                        <th class="col-md-2">Email</th>
                         <th class="col-md-2">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>1001</td>
-                        <td>Ani</td>
-                        <td>Ilmu Komputer</td>
-                        <td>
-                            <a href='' class="btn btn-warning btn-sm">Edit</a>
-                            <a href='' class="btn btn-danger btn-sm">Del</a>
-                        </td>
-                    </tr>
-                </tbody>
+
             </table>
 
         </div>
@@ -93,7 +81,26 @@
     <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#myTable').DataTable();
+            $('#myTable').DataTable({
+                processing: true,
+                serverside: true,
+                ajax: "{{ url('pegawaiAjax') }}",
+                columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                }, {
+                    data: 'nama',
+                    name: 'Nama'
+                }, {
+                    data: 'email',
+                    name: 'Email'
+                }, {
+                    data: 'aksi',
+                    name: 'Aksi'
+                }]
+            });
         });
     </script>
 </body>
