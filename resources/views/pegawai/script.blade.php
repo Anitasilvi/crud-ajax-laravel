@@ -47,9 +47,31 @@
                     email: $('#email').val()
                 },
                 success: function(response) {
-                    console.log(response);
+                    if (response.errors) {
+                        console.log(response.errors);
+                        $('.alert-danger').removeClass('d-none');
+                        $('.alert-danger').html("<ul>");
+                        $.each(response.errors, function(key, value) {
+                            $('.alert-danger').find('ul').append("<li>" + value +
+                                "</li>");
+                        });
+                    } else {
+                        $('.alert-success').removeClass('d-none');
+                        $('.alert-success').html(response.success);
+                    }
+                    $('#myTable').DataTable().ajax.reload();
                 }
-            })
-        })
+            });
+        });
+    });
+    $('#exampleModal').on('hidden.bs.modal', function() {
+        $('#nama').val('');
+        $('#email').val('');
+
+        $('.alert-danger').addClass('d-none');
+        $('.alert.danger').html('');
+
+        $('.alert-success').addClass('d-none');
+        $('.alert-success').html('');
     });
 </script>
