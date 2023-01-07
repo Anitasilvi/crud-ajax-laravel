@@ -125,6 +125,6 @@ class pegawaiAjaxController extends Controller
      */
     public function destroy($id)
     {
-        //
+        pegawai::where('id', $id)->delete();
     }
 }

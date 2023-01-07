@@ -42,6 +42,17 @@
         });
     });
 
+    //proses simpan
+    $('body').on('click', '.tombol-del', function(e) {});
+    if (confirm('Yakin mau hapus data ini? ') == true) {
+        var id = $(this).data('id');
+        $.ajax({
+            url: 'pegawaiAjax/' + id,
+            type: 'DELETE',
+        });
+        $('#myTable').DataTable().ajax.reload();
+    }
+
     //fungsi simpan dan update
     function simpan(id = " ") {
         if (id == '') {
