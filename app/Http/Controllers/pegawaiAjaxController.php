@@ -42,7 +42,11 @@ class pegawaiAjaxController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'nama' => $request->nama,
+            'email' => $request->email
+        ];
+        pegawai::create($data);
     }
 
     /**
